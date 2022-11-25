@@ -1,0 +1,20 @@
+<!-- <tr>
+    <th scope="row">${producto.id}</th>
+    <td>${producto.title}</td>
+    <td>${producto.price}</td>
+    <td><img src="${producto.thumbnail}" alt="miniatura" width="50px"></td>
+    <td>
+        <button type="button" class="btn btn-danger" onclick="borrarProducto(${producto.id})">Borrar</button>
+    </td>
+</tr> -->
+
+<!-- iterar -->
+
+<% for (let i = 0; i < productos.length; i++) { %>
+    <tr>
+        <th scope="row"><%= productos[i].id %></th>
+        <td><%= productos[i].nombre %></td>
+        <td><%= productos[i].precio %></td>
+        <td><img src="<%= productos[i].miniatura %>" alt="miniatura" width="50px"></td>
+    </tr>
+<% } %>

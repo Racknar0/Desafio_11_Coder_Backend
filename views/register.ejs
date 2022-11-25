@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>
+    <%= title %>
+  </title>
+  <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
+
+<body>
+  <h1 class="text-center">
+    <%= title %>
+  </h1>
+  <div
+    style="max-width: 600px; display: block; margin: 0 auto; background-color: #e9ecef; padding: 20px; border-radius: 20px;">
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email_input" aria-describedby="emailHelp" />
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password_input" />
+      </div>
+      <div class="mb-3">
+        <label for="first_name" class="form-label">first_name</label>
+        <input type="text" class="form-control" id="first_name_input" />
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">last_name</label>
+        <input type="text" class="form-control" id="last_name_input" />
+      </div>
+      <div class="mb-3">
+        <label for="age" class="form-label">age</label>
+        <input type="number" class="form-control" id="age_input" />
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary" id="handleSubmit">Register</button>
+      <hr>
+
+    </form>
+    <button class="btn btn-primary" id="handleLogin"">Ir a Login</button>
+        </div>
+
+
+        <!-- importar ejs -->
+          <script>
+            const email_input = document.getElementById('email_input');
+            const password_input = document.getElementById('password_input');
+            const first_name_input = document.getElementById('first_name_input');
+            const last_name_input = document.getElementById('last_name_input');
+            const age_input = document.getElementById('age_input');
+
+            const handleLogin = document.getElementById('handleLogin');
+            handleLogin.addEventListener('click', () => {
+              window.location.href = '/login';
+            });
+
+            const handleSubmit = document.getElementById('handleSubmit');
+            handleSubmit.addEventListener('click', (e) => {
+              e.preventDefault();
+
+              const data = {
+                email: email_input.value,
+                password: password_input.value,
+                firstName: first_name_input.value,
+                lastName: last_name_input.value,
+                age: age_input.value,
+              }
+
+              
+              fetch('http://localhost:3000/sign-up', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                  })
+                    .then((res) => {
+                      if (res.status === 200) {
+                        return res.json();
+                      } else {
+                        return null;
+                      }
+                    })
+                    .then((data) => {
+                      if (data) {
+                        window.location.href = '/login';
+                        console.log('Usuario registrado');
+                        console.log(data);
+                      } else {
+                        window.location.href = '/fail-register';
+                      }
+                    });
+              
+
+            });
+
+
+          </script>
+
+
+        <script src=" https://cdn.jsdelivr.net/npm/ejs/ejs.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

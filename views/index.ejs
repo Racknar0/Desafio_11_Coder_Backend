@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title><%= title %></title>
+        <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <h1 class="text-center">Web Sockets</h1>
+
+        <div class="bg-light" style="max-width: 400px; margin: auto; margin-bottom: 40px; margin-top: 40px;">
+            <h2 class="text-center">Bienvenido usuario</h2>
+            <!-- boton de logout -->
+            <button class="btn btn-primary d-block m-auto" id="logout_button">Logout</button>
+        </div>
+
+        <div class="bg-light" style="max-width: 400px; margin: auto">
+            <h2 class="text-center">Login de usuario</h2>
+            <div id="cotainer_login">
+                <form action="" class="d-flex flex-column justify-content-center">
+                    <label for="nombre_usuario">Ingrese su nombre</label>
+                    <input type="text" id="nombre_usuario" />
+                    <button type="submit" class="btn btn-primary mt-1" id="btn_formulario_login">Login</button>
+                    
+                </form>
+            </div>
+        </div>
+
+        <div
+            style="max-width: 800px; margin: auto"
+            class="d-flex justify-content-center mt-5"
+        >
+            <form
+                style="background-color: aliceblue; padding: 10px"
+                class="w-50"
+            >
+                <!--       <form style="background-color: aliceblue; padding: 10px;" class="w-50" action="/productos" method="post"> -->
+                <h1 class="fs-3">Ingrese el Producto</h1>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"
+                        >Nombre</label
+                    >
+                    <input
+                        id="nombre_producto"
+                        name="title"
+                        type="text"
+                        class="form-control"
+                        aria-describedby="emailHelp"
+                        placeholder="Agrega el nombre del producto"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"
+                        >Precio</label
+                    >
+                    <input
+                        id="precio_producto"
+                        name="price"
+                        type="number"
+                        class="form-control"
+                        required
+                        placeholder="Agrega el valor del producto"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"
+                        >Miniatura</label
+                    >
+                    <input
+                        id="miniatura_producto"
+                        name="thumbnail"
+                        type="text"
+                        class="form-control"
+                        required
+                        placeholder="Agrega link de la miniatura del producto"
+                    />
+                </div>
+
+                <button id="btn_submit" type="submit" class="btn btn-primary">
+                    Agregar
+                </button>
+            </form>
+        </div>
+
+        <div>
+            <div style="max-width: 600px; display: block; margin: 50px auto">
+                <h2 class="text-center">Productos desde Faker js</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Miniatura</th>
+                        </tr>
+                    </thead>
+                    <tbody id="faker_productos"></tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 100px;">
+                <h2 class="text-center">Lista de Productos</h2>
+                <div id="container_productos"></div>
+                <div id="template_div"></div>
+            </div>
+
+            <div class="m-5">
+                <h2 class="text-center">Centro de mensajes 2.0</h2>
+                <form action="" class="m-auto text-center bg-light" style="max-width: 600px;">
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" class="form-control" placeholder="Ingrese su e-mail" required>
+
+                    <label for="nick">Nick</label>
+                    <input class="form-control" type="text" id="nick" placeholder="Ingrese su nick" required>
+
+                    <label for="nombre">Nombre</label>
+                    <input class="form-control" type="text" id="nombre" placeholder="Ingrese su nombre" required>
+                    <label for="apellido">Apellido</label>
+                    <input class="form-control" type="text" id="apellido" placeholder="Ingrese su apellido" required>
+                    <label for="edad">Edad</label>
+                    <input class="form-control" type="number" id="edad" placeholder="Ingrese su edad" required>
+                    <label for="avatar">Avatar</label>
+                    <input class="form-control" type="text" id="avatar" placeholder="Ingrese su avatar" required>
+                    <label for="mensaje">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" rows="3" placeholder="Ingrese su mensaje" required></textarea>
+                    <button id="btn_submit_2" type="submit" class="btn btn-primary m-4">Enviar Mensaje</button>
+                </form>
+            </div>
+
+
+            <div style="width: 700px; background-color: beige; margin: auto">
+                <h2 class="text-center">Centro de mensajes</h2>
+                <div id="container_msj"></div>
+
+                <!-- input email user -->
+                <input
+                    id="email_user"
+                    type="email"
+                    style="width: 300px"
+                    class="form-control m-auto"
+                    aria-describedby="emailHelp"
+                    placeholder="Agrega tu email"
+                    required
+                />
+                <form style="width: 300px; margin: auto" action="" class="">
+                    <input
+                        style="width: 300px"
+                        class="form-control m-auto"
+                        id="input_msj"
+                        autocomplete="off"
+                        placeholder="Escribe tu mensaje"
+                        required
+                    />
+                    <button id="btn_enviar_msj" class="btn btn-success">
+                        Enviar mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- importar ejs -->
+        <script>
+            const logout_button = document.getElementById("logout_button");
+
+            logout_button.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                fetch("http://localhost:3000/sign-out", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({}),
+                })
+                    .then(() => {
+                        window.location.href = "/login"; 
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            });    
+           
+
+
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/ejs/ejs.min.js"></script>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/client.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
