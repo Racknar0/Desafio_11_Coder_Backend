@@ -89,8 +89,6 @@ passport.use('sign-up', new LocalStrategy({  // <--- 'sign-up' is the name of th
 }));
 
 
-
-
 passport.use('sign-in', new LocalStrategy({  // <--- 'sign-in' is the name of the strategy
     usernameField: 'email', //! El campo que se va a usar para el login
 }, (email, password, done) => {
@@ -101,13 +99,7 @@ passport.use('sign-in', new LocalStrategy({  // <--- 'sign-in' is the name of th
                 return done(null, false); //! Retorna un error
             }
 
-
-            console.log(isValidPassword(password, user.password));
-            console.log('password', password);
-            console.log('user.password', user.password);
-            
-
-            if(isValidPassword(password, user.password)) { // Si la contraseña es correcta
+            if(!isValidPassword(password, user.password)) { // Si la contraseña es correcta
                 console.log(`La contraseña es incorrecta`);
                 return done(null, false); //! Retorna un error
             }
@@ -143,7 +135,7 @@ app.use('/', express.static(path.join(__dirname, 'public'))); //! aca se declara
 app.use(expressSession({
     store: MongoStore.create({ 
         mongoUrl: process.env.MONGO_URL_SESSION || 'mongodb://localhost:27017/ecommerce',
-        ttl: 60 //! 60 segundos
+        ttl: 10 //! 60 segundos
     }),
     secret: 'xYzUCAchitO',
     resave: true,

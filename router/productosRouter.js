@@ -47,7 +47,7 @@ const isAuth = (req, res, next) => {
     if(req.isAuthenticated()) { // Si el usuario está logueado
         next()
     } else {
-        res.status(401).json({ message: 'No estás autorizado para acceder a esta ruta' })
+        res.status(401).json({ message: 'No estás autorizado para acceder a esta ruta dirigete a /login' })
     }
 }
 
@@ -63,9 +63,6 @@ router.get('/me', isAuth, async (req, res, next) => {
   })
 
 /* ******************************************** */
-
-
-
 
 
 
